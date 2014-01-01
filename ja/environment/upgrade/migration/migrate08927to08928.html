@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="keywords" content="DBFlute.NET,移行時の注意,Migration,Attention" />
+	<link rel="stylesheet" type="text/css" href="../../../../css/dfnet-sub.css" />
+	<title>移行 0.8.9.27 to 0.8.9.28 | DBFlute.NET</title>
+</head>
+<body>
+<div id="container" class="ct-manual">
+
+<div id="header">
+	<div class="top-link"><a href="../../../../">DBFlute<span class="suffix">.NET</span></a></div>
+	<div class="navi-upper"><a href="../../../../ja/sitemap.html">SiteMap</a>|<a href="http://d.hatena.ne.jp/jflute/">Author's Blog</a></div>
+	<div class="header-lower"><p>現場指向O/Rマッパー</p></div>
+</div>
+
+<div id="content">
+	<h1>移行 0.8.9.27 to 0.8.9.28</h1>
+	<ul class="indexlist">
+		<li><a href="#basic">お約束の注意点</a></li>
+		<li><a href="#env">環境上の注意点</a>
+			<ul>
+				<li><a href="#loaddatareverse">DataXlsTemplate は LoadDataReverse に</a></li>
+				<li><a href="#newaltercheck">AlterCheckが生まれ変わり</a></li>
+			</ul>
+		</li>
+		<li><a href="#impl">実装上の注意点</a>
+			<ul>
+				<li><a href="#sqlserverescape">SQLServerの正規表現ワイルドカードをエスケープ</a></li>
+			</ul>
+		</li>
+	</ul>
+
+	<h2 id="basic">お約束の注意点</h2>
+	<dl class="textlist">
+		<dt>新しいクラスのプロジェクトへの追加</dt>
+		<dd>
+			新しいクラスがあるかもしれないので、追加を忘れずに <span class="freecomment">(Koropokkur.NETの利用を推奨)</span>
+			<div class="relatedpage"><a href="../migration/index.html#newclass">DBFlute.NETの移行情報 - 新しいクラスの追加</a></div>
+		</dd>
+		<dt>タスクを実行し忘れないように</dt>
+		<dd>Generateタスクだけでなく、(外だしSQLがある場合は)Sql2Entityタスクも実行</dd>
+	</dl>
+
+	<h2 id="env">環境上の注意点</h2>
+	<h3 id="loaddatareverse">DataXlsTemplate は LoadDataReverse に</h3>
+	<p>
+		Docタスクの DataXlsTemplate は LoadDataReverse として再出発することになりました。
+	</p>
+	<h3 id="newaltercheck">AlterCheckが生まれ変わり</h3>
+	<p>
+		前バージョンで導入された AlterCheck が、より現場フィットになるように改善されています。
+	</p>
+	<div class="detailpage"><span class="working"><!-- <a href="../../../manual/function/generator/task/replaceschema/altercheck.html"> -->AlterCheck<!-- </a> --></span></div>
+
+	<h2 id="impl">実装上の注意点</h2>
+	<h3 id="sqlserverescape">SQLServerの正規表現ワイルドカードをエスケープ</h3>
+	<p>
+		SQLServer の LikeSearch では、正規表現ワイルドカードが利用できます。"[a-b]"
+		という風に [ と ] で囲った中で正規表現が利用できます。ConditionBean および ParameterBean
+		で行われている一致の方向が決まったときの自動のエスケープにおいて、
+		その括弧もエスケープをするようにしました。
+	</p>
+	<p>
+		これにて、アプリで自前でエスケープする必要はありませんが、このバージョンにアップグレードする際に既にエスケープ処理が入っていると、
+		二重でエスケープされてしまうので、自前のエスケープは基本的に除去する必要があります。
+	</p>
+
+</div>
+
+<div id="footer">
+	<div><a href="../../../../ja/sitemap.html">SiteMap</a> <a href="http://d.hatena.ne.jp/jflute">Author's Blog</a><a href="https://www.seasar.org/issues/browse/DBFLUTE">BTS</a></div>
+	<ul class="footer-navi">
+		<li><a href="../../../../ja/introduction/index.html">Introduction</a></li>
+		<li><a href="../../../../ja/environment/index.html">Environment</a></li>
+	</ul>
+</div>
+
+</div>
+</body>
+</html>
