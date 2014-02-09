@@ -101,9 +101,9 @@ cb.Query().SetMemberId_LikeSearch(<span class="literal">"vi"</span>
 <span class="comment">//    , new LikeSearchOption().LikeContain().SplitByBlank().AsOrSplit()); ※.NET版では未サポート</span>
 
 <span class="comment">// nullとかnullじゃないとか</span>
-cb.Query().SetMemberId_IsNull();
-cb.Query().SetMemberId_IsNotNull();
-<span class="comment">//cb.Query().SetMemberId_IsNullOrEmpty(); ※.NET版では未サポート</span>
+cb.Query().SetBirthdate_IsNull();
+cb.Query().SetBirthdate_IsNotNull();
+<span class="comment">//cb.Query().SetMemo_IsNullOrEmpty(); ※.NET版では未サポート</span>
 
 <span class="comment">// 日付の定型的なFromTo条件</span>
 <span class="comment">//  e.g. 10月 から 12月(一杯) まで</span>
